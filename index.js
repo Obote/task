@@ -15,3 +15,17 @@ document.querySelector('.AddTaskBtn').addEventListener('click', (e) => {
     ui.addToUI(task);
   }
 });
+
+document.querySelector('.task-list').addEventListener('click', (e) => {
+  if (e.target.className.includes('task__op_edit')) {
+    ui.editTask(e);
+  }
+
+  if (e.target.className.includes('task__op_delete')) {
+    ui.deleteTask(e);
+  }
+
+  if (e.target.className.includes('task-check')) {
+    ui.completeTask(e);
+  }
+});
