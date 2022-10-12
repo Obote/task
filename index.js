@@ -13,6 +13,7 @@ document.querySelector('.AddTaskBtn').addEventListener('click', (e) => {
     const task = new Task(taskTitle);
 
     ui.addToUI(task);
+    ui.resetForm();
   }
 });
 
@@ -28,4 +29,12 @@ document.querySelector('.task-list').addEventListener('click', (e) => {
   if (e.target.className.includes('task-check')) {
     ui.completeTask(e);
   }
+});
+
+document.querySelector('.EditTaskBtn').addEventListener('click', (e) => {
+  ui.updateTask(e);
+});
+
+document.querySelector('.CancelTaskBtn').addEventListener('click', (e) => {
+  ui.cancelTask(e);
 });
