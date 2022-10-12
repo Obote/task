@@ -1,3 +1,5 @@
+import LS from './ls.js';
+
 function UI() {}
 
 const ls = new LS();
@@ -47,6 +49,33 @@ UI.prototype.addToUI = (task) => {
 
 UI.prototype.resetForm = () => {
   document.querySelector('#newtaskID').value = '';
+};
+
+UI.prototype.deleteTask = (e) => {
+  const task = e.target.parentElement.parentElement;
+  const id = task.dataset.createdat;
+  ls.deleteTask(id);
+  task.remove();
+};
+
+UI.prototype.completeTask = (e) => {
+  const task = e.target.parentElement.parentElement;
+  const id = task.dataset.createdat;
+  ls.completeTask(id);
+  task.classList.toggle('completed');
+};
+
+UI.prototype.editTask = (e) => {
+  const task = e.target.parentElement.parentElement;
+  const id = task.dataset.createdat;
+  const data = ls.findTask(id);
+
+  document.querySelector('#newtaskID').value = data.title;
+  document.querySelector('#updateTaskId').value = data.id;
+
+  document.querySelector('.AddTaskBtn').style.display = 'none';
+  document.querySelector('.EditTaskBtn').style.display = 'inline';
+  document.querySelector('.CancelTaskBtn').style.display = 'inline';
 };
 
 export default UI;
